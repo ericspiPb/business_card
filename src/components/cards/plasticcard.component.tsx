@@ -1,11 +1,13 @@
 import { ReactNode, CSSProperties, MouseEvent, useState, useLayoutEffect, useCallback } from 'react';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import _ from 'lodash';
 
 export interface PlasticCardStyles {
-  card: CSSProperties;
+  card?: CSSProperties;
 }
 export interface PlasticCardProps {
   children?: ReactNode;
+  style?: PlasticCardStyles;
 }
 
 export default function PlasticCard(props: PlasticCardProps) {
@@ -50,7 +52,12 @@ export default function PlasticCard(props: PlasticCardProps) {
   })
 
   return (
-    <div className='plastic-card' style={styles.card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div
+      className='plastic-card'
+      style={props.style?.card ? _.merge(styles.card, props.style.card) : styles.card}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {props.children}
     </div>
   )
