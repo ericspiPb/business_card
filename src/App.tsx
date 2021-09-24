@@ -24,8 +24,14 @@ interface AppStyles {
     social?: {
       row?: CSSProperties;
       icons?: CSSProperties;
-      github?: CSSProperties;
-      linkedin?: CSSProperties;
+      github?: {
+        icon?: CSSProperties;
+        link?: CSSProperties;
+      };
+      linkedin?: {
+        icon?: CSSProperties;
+        link?: CSSProperties;
+      };
     };
   };
   me?: CSSProperties;
@@ -62,8 +68,9 @@ function App() {
         },
         email: {
           icon: {
-            width: '6mm',
-            height: '6mm',
+            width: '4mm',
+            height: '4mm',
+            filter: 'invert(1)',
           },
           text: {
             fontSize: '0.75rem',
@@ -73,8 +80,9 @@ function App() {
         },
         phone: {
           icon: {
-            width: '6mm',
-            height: '6mm',
+            width: '4mm',
+            height: '4mm',
+            filter: 'invert(1)',
           },
           text: {
             fontSize: '0.75rem',
@@ -89,12 +97,24 @@ function App() {
           justifyContent: 'space-around',
         },
         github: {
-          width: '8mm',
-          height: '8mm',
+          icon: {
+            width: '8mm',
+            height: '8mm',
+            filter: 'invert(1)',
+          },
+          link: {
+            textDecoration: 'none',
+          },
         },
         linkedin: {
-          width: '8mm',
-          height: '8mm',
+          icon: {
+            width: '8mm',
+            height: '8mm',
+            filter: 'invert(1)',
+          },
+          link: {
+            textDecoration: 'none',
+          },
         },
       },
     },
@@ -120,21 +140,21 @@ function App() {
               </thead>
               <tbody style={styles.about?.tbody}>
                 <tr>
-                  <td style={styles.about?.contact?.icon}><img style={styles.about?.contact?.email?.icon} src={process.env.PUBLIC_URL + '/images/me.png'} alt='me' /></td>
+                  <td style={styles.about?.contact?.icon}><img style={styles.about?.contact?.email?.icon} src={process.env.PUBLIC_URL + '/images/envelope-solid.svg'} alt='email' /></td>
                   <td><a style={styles.about?.contact?.email?.text} href={`mailto:` + process.env.REACT_APP_EMAIL}>{process.env.REACT_APP_EMAIL}</a></td>
                 </tr>
                 <tr>
-                  <td style={styles.about?.contact?.icon}><img style={styles.about?.contact?.phone?.icon} src={process.env.PUBLIC_URL + '/images/me.png'} alt='me' /></td>
+                  <td style={styles.about?.contact?.icon}><img style={styles.about?.contact?.phone?.icon} src={process.env.PUBLIC_URL + '/images/mobile-solid.svg'} alt='mobile' /></td>
                   <td><a style={styles.about?.contact?.phone?.text} href={`tel:` + process.env.REACT_APP_CONTACT}>{process.env.REACT_APP_CONTACT}</a></td>
                 </tr>
                 <tr>
                   <td colSpan={2}>
                     <div style={styles.about?.social?.icons}>
-                      <a href={`https://github.com/` + process.env.REACT_APP_GITHUB} target='_blank' rel='noreferrer'>
-                        <img style={styles.about?.social?.linkedin} src={process.env.PUBLIC_URL + '/images/me.png'} alt='me' />
+                      <a style={styles.about?.social?.github?.link} href={`https://github.com/` + process.env.REACT_APP_GITHUB} target='_blank' rel='noreferrer'>
+                        <img style={styles.about?.social?.linkedin?.icon} src={process.env.PUBLIC_URL + '/images/github-brands.svg'} alt='Github' />
                       </a>
-                      <a href={`https://linkedin.com/in/` + process.env.REACT_APP_LINKEDIN} target='_blank' rel='noreferrer'>
-                        <img style={styles.about?.social?.github} src={process.env.PUBLIC_URL + '/images/me.png'} alt='me' />
+                      <a style={styles.about?.social?.github?.link} href={`https://linkedin.com/in/` + process.env.REACT_APP_LINKEDIN} target='_blank' rel='noreferrer'>
+                        <img style={styles.about?.social?.github?.icon} src={process.env.PUBLIC_URL + '/images/linkedin-brands.svg'} alt='LinkedIn' />
                       </a>
                     </div>
                   </td>
