@@ -1,6 +1,6 @@
-import { ReactNode, CSSProperties, MouseEvent, useState, useLayoutEffect, useCallback } from 'react';
+import { ReactNode, CSSProperties, MouseEvent, useState, useEffect, useCallback } from 'react';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-import _ from 'lodash';
+import { merge } from 'lodash';
 
 export interface PlasticCardStyles {
   card?: CSSProperties;
@@ -10,7 +10,7 @@ export interface PlasticCardProps {
   style?: PlasticCardStyles;
 }
 
-export default function PlasticCard(props: PlasticCardProps) {
+export default function PlasticCard(props: PlasticCardProps): JSX.Element {
   const { innerWidth, innerHeight } = useWindowDimensions();
   const [transform, setTransform] = useState<string>('');
 
@@ -33,17 +33,17 @@ export default function PlasticCard(props: PlasticCardProps) {
     setTransform('rotate(90deg)');
   }, []);
 
-  const handleMouseEnter = useCallback((event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
     event.currentTarget.style.transform = 'translateY(-16px)';
     event.currentTarget.style.boxShadow = '0 19px 38px rgba(255,255,255,0.30), 0 15px 12px rgba(255,255,255,0.22)';
-  }, []);
+  };
 
-  const handleMouseLeave = useCallback((event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
     event.currentTarget.style.transform = 'translateY(0)';
     event.currentTarget.style.boxShadow = '';
-  }, []);
+  };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (innerHeight > innerWidth) {
       changeCardOrientation();
     } else {
@@ -54,7 +54,7 @@ export default function PlasticCard(props: PlasticCardProps) {
   return (
     <div
       className='plastic-card'
-      style={props.style?.card ? _.merge(styles.card, props.style.card) : styles.card}
+      style={props.style?.card ? merge(styles.card, props.style.card) : styles.card}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

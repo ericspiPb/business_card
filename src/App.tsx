@@ -1,6 +1,8 @@
 import { CSSProperties } from 'react';
 import './App.scss';
 import PlasticCard, { PlasticCardStyles } from './components/cards/plasticcard.component';
+import TextIcon, { TextIconStyles } from './components/icons/texticon.component';
+import LinkIcon, { LinkIconStyles } from './components/icons/linkicon.component';
 
 interface AppStyles {
   plasticcard?: PlasticCardStyles;
@@ -12,26 +14,14 @@ interface AppStyles {
     name?: CSSProperties;
     contact?: {
       icon?: CSSProperties;
-      email?: {
-        icon?: CSSProperties;
-        text?: CSSProperties;
-      };
-      phone?: {
-        icon?: CSSProperties;
-        text?: CSSProperties;
-      };
+      email?: TextIconStyles;
+      phone?: TextIconStyles;
     };
     social?: {
       row?: CSSProperties;
       icons?: CSSProperties;
-      github?: {
-        icon?: CSSProperties;
-        link?: CSSProperties;
-      };
-      linkedin?: {
-        icon?: CSSProperties;
-        link?: CSSProperties;
-      };
+      github?: LinkIconStyles;
+      linkedin?: LinkIconStyles;
     };
   };
   me?: CSSProperties;
@@ -100,6 +90,7 @@ function App() {
           icon: {
             width: '8mm',
             height: '8mm',
+            borderRadius: '50%',
             filter: 'invert(1)',
           },
           link: {
@@ -110,6 +101,7 @@ function App() {
           icon: {
             width: '8mm',
             height: '8mm',
+            borderRadius: '50%',
             filter: 'invert(1)',
           },
           link: {
@@ -150,12 +142,8 @@ function App() {
                 <tr>
                   <td colSpan={2}>
                     <div style={styles.about?.social?.icons}>
-                      <a style={styles.about?.social?.github?.link} href={`https://github.com/` + process.env.REACT_APP_GITHUB} target='_blank' rel='noreferrer'>
-                        <img style={styles.about?.social?.linkedin?.icon} src={process.env.PUBLIC_URL + '/images/github-brands.svg'} alt='Github' />
-                      </a>
-                      <a style={styles.about?.social?.github?.link} href={`https://linkedin.com/in/` + process.env.REACT_APP_LINKEDIN} target='_blank' rel='noreferrer'>
-                        <img style={styles.about?.social?.github?.icon} src={process.env.PUBLIC_URL + '/images/linkedin-brands.svg'} alt='LinkedIn' />
-                      </a>
+                      <LinkIcon style={styles.about?.social?.github} alt='Github' src={process.env.PUBLIC_URL + '/images/github-brands.svg'} href={`https://github.com/` + process.env.REACT_APP_GITHUB} />
+                      <LinkIcon style={styles.about?.social?.linkedin} alt='LinkedIn' src={process.env.PUBLIC_URL + '/images/linkedin-brands.svg'} href={`https://linkedin.com/in/` + process.env.REACT_APP_LINKEDIN} />
                     </div>
                   </td>
                 </tr>
