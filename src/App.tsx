@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import './App.scss';
 import PlasticCard, { PlasticCardStyles } from './components/cards/plasticcard.component';
-import TextIcon, { TextIconStyles } from './components/icons/texticon.component';
+import { TextIconStyles } from './components/icons/texticon.component';
 import LinkIcon, { LinkIconStyles } from './components/icons/linkicon.component';
 
 interface AppStyles {
